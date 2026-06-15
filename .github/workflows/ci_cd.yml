@@ -27,7 +27,7 @@ jobs:
       - name: Lint Python
         run: |
           pip install flake8 -q
-          flake8 dags/ --max-line-length=120 --ignore=E501
+          flake8 dags/ --max-line-length=120 --ignore=E501,E203
       - name: Tests unitaires
         run: pytest tests/ -v --tb=short || echo "Tests non configures"
 

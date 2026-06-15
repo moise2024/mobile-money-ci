@@ -5,6 +5,7 @@ Appeles automatiquement en cas de succes, echec ou retry
 from datetime import datetime
 import logging
 
+
 def on_failure_callback(context):
     dag = context['dag'].dag_id
     tache = context['task_instance'].task_id
@@ -21,9 +22,11 @@ def on_failure_callback(context):
     """
     logging.error(message)
 
+
 def on_success_callback(context):
     dag = context['dag'].dag_id
     logging.info(f'SUCCESS - DAG {dag} termine avec succes')
+
 
 def on_retry_callback(context):
     tache = context['task_instance'].task_id

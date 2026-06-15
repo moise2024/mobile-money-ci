@@ -25,11 +25,13 @@ default_args = {
     'execution_timeout': timedelta(hours=2),
 }
 
+
 def on_failure_callback(context):
     dag = context['dag'].dag_id
     tache = context['task_instance'].task_id
     erreur = str(context.get('exception', 'Inconnue'))
     logging.error(f'ALERTE - DAG: {dag} - Tache: {tache} - Erreur: {erreur}')
+
 
 def task_extract(**context):
     log = logging.getLogger(__name__)
@@ -41,6 +43,7 @@ def task_extract(**context):
     df.to_parquet('/data/raw/transactions_raw.parquet', index=False)
     log.info(f'EXTRACT - {nb:,} lignes extraites')
     return nb
+
 
 def task_clean(**context):
     log = logging.getLogger(__name__)
@@ -60,6 +63,7 @@ def task_clean(**context):
     log.info(f'CLEAN - {nb:,} lignes propres')
     return nb
 
+
 def task_load(**context):
     import sqlalchemy
     log = logging.getLogger(__name__)
@@ -68,7 +72,7 @@ def task_load(**context):
         raise ValueError('SUPABASE_URL non definie')
     engine = sqlalchemy.create_engine(SUPABASE_URL)
     df = pd.read_parquet('/data/clean/transactions_clean.parquet')
-    chunks = [df[i:i+5000] for i in range(0, len(df), 5000)]
+    chunks = [df[i : i + 5000] for i in range(0, len(df), 5000)]
     with engine.connect() as conn:
         for chunk in chunks:
             chunk.to_sql('transactions', conn, if_exists='append',
@@ -76,6 +80,7 @@ def task_load(**context):
         conn.commit()
     log.info(f'LOAD - {len(df):,} lignes chargees')
     engine.dispose()
+
 
 def task_report(**context):
     log = logging.getLogger(__name__)
@@ -90,13 +95,14 @@ def task_report(**context):
         'nb_propres': nb_propres,
         'nb_aberrations': (nb_brutes or 0) - (nb_propres or 0),
         'volume_total_fcfa': int(df_s['montant_fcfa'].sum()),
-        'taux_succes_pct': round(len(df_s)/len(df)*100, 1),
+        'taux_succes_pct': round(len(df_s) / len(df) * 100, 1),
         'montant_moyen_fcfa': int(df_s['montant_fcfa'].mean()),
     }
     os.makedirs('/data/output', exist_ok=True)
     with open('/data/output/rapport_nuit.json', 'w') as f:
         json.dump(rapport, f, ensure_ascii=False, indent=2)
     log.info('RAPPORT - genere')
+
 
 with DAG(
     dag_id='pipeline_mobile_money_ci',
