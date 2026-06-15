@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "titre": "Rapport Pipeline Mobile Money CI",
+    "date_generation": "2026-06-15 05:27",
+    "version": "1.0.0",
+    "source": "Data2_transactions_mobile_money_100k.csv",
+    "periode": "2024-01 a 2024-06"
+  },
+  "kpi": {
+    "volume_total_fcfa": 14817300727,
+    "frais_total_fcfa": 93017192,
+    "nb_transactions_total": 99800,
+    "nb_succes": 80002,
+    "taux_succes_pct": 80.2,
+    "montant_moyen_fcfa": 185211,
+    "montant_median_fcfa": 78260
+  },
+  "operateurs": [
+    {
+      "operateur": "MTN CI",
+      "nb_tx": 19778,
+      "volume": 3649292879,
+      "moy": 184513,
+      "frais": 22932836
+    },
+    {
+      "operateur": "Moov Africa",
+      "nb_tx": 20029,
+      "volume": 3712909634,
+      "moy": 185377,
+      "frais": 23361601
+    },
+    {
+      "operateur": "Orange Money",
+      "nb_tx": 20060,
+      "volume": 3721713521,
+      "moy": 185529,
+      "frais": 23343264
+    },
+    {
+      "operateur": "Wave",
+      "nb_tx": 20135,
+      "volume": 3733384693,
+      "moy": 185418,
+      "frais": 23379491
+    }
+  ],
+  "tendances": [
+    {
+      "mois": "2024-01",
+      "nb_tx": 13743,
+      "volume": 2565113824
+    },
+    {
+      "mois": "2024-02",
+      "nb_tx": 12676,
+      "volume": 2326389195
+    },
+    {
+      "mois": "2024-03",
+      "nb_tx": 13772,
+      "volume": 2561294559
+    },
+    {
+      "mois": "2024-04",
+      "nb_tx": 13235,
+      "volume": 2448747434
+    },
+    {
+      "mois": "2024-05",
+      "nb_tx": 13658,
+      "volume": 2534035297
+    },
+    {
+      "mois": "2024-06",
+      "nb_tx": 12918,
+      "volume": 2381720418
+    }
+  ]
+}

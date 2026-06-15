@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: perf_operateurs
+    description: "Performances mensuelles par operateur Mobile Money CI"
+    columns:
+      - name: nom_operateur
+        tests:
+          - not_null
+      - name: nb_transactions
+        tests:
+          - not_null
+      - name: volume_fcfa
+        tests:
+          - not_null

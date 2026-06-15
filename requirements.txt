@@ -1,0 +1,10 @@
+pandas==2.0.3
+numpy==1.25.2
+pyarrow==13.0.0
+sqlalchemy==2.0.20
+psycopg2-binary==2.9.7
+matplotlib==3.7.2
+seaborn==0.12.2
+pytest==7.4.0
+apache-airflow==2.9.0
+dbt-postgres==1.8.0

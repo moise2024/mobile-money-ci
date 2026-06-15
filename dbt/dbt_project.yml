@@ -1,0 +1,8 @@
+name: projet_dbt
+version: '1.0.0'
+profile: projet_dbt
+model-paths: ['models']
+models:
+  projet_dbt:
+    analytics:
+      materialized: view
